@@ -11,7 +11,7 @@
   <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
           <div class="navbar-header page-scroll">
-              <img src="logo.jpg" class="img-responsive" alt="Lassonde Logo"><p class="navbar-text">Examining QA Pairs with Freebase Triplets/Quadruplets</p>
+              <img src="logo.jpg" class="img-responsive" alt="Lassonde Logo"><p class="navbar-text">Evaluating Matched QA Pairs and Freebase Triplets/Quadruplets</p>
           </div>
       </div>
   </div>

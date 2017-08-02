@@ -25,7 +25,7 @@ function getInfo()
 
 function resetPass()
 {
-  var xhr=openAjax();
+  var xhr = openAjax();
   var key = document.getElementById('key').value;
   var userName = document.getElementById('username').value;
   var password = document.getElementById('password').value;

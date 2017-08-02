@@ -4,14 +4,14 @@
   <title>FreebaseQA Analysis</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <script type="text/javascript" src="forgotInfo.js"></script>
-  <link rel="stylesheet" type="text/css" href="login.css">
+  <script type="text/javascript" src="forgotinfo.js"></script>
+  <link rel="stylesheet" type="text/css" href="index.css">
 </head>
 <body>
   <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
           <div class="navbar-header page-scroll">
-              <img src="logo.jpg" class="img-responsive" alt="Lassonde Logo"><p class="navbar-text">Examining QA Pairs with Freebase Triplets/Quadruplets</p>
+              <img src="logo.jpg" class="img-responsive" alt="Lassonde Logo"><p class="navbar-text">Evaluating Matched QA Pairs and Freebase Triplets/Quadruplets</p>
           </div>
       </div>
   </div>
