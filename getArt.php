@@ -44,17 +44,17 @@ if ($result = mysqli_query($conn, $query)) {
         // Make the article info in JSON
         if ($rowCount == 0)
         {
-          $json['art_id1']=$row['art_id'];
-          $json['title1']=$row['title'];
-          $json['category1']=$row['category'];
-          $json['artText1']=$row['artText'];
+            $json['art_id1']=$row['art_id'];
+            $json['title1']=$row['title'];
+            $json['category1']=$row['category'];
+            $json['artText1']=$row['artText'];
         }
         else
         {
-          $json['art_id2']=$row['art_id'];
-          $json['title2']=$row['title'];
-          $json['category2']=$row['category'];
-          $json['artText2']=$row['artText'];
+            $json['art_id2']=$row['art_id'];
+            $json['title2']=$row['title'];
+            $json['category2']=$row['category'];
+            $json['artText2']=$row['artText'];
         }
         $rowCount = $rowCount + 1;
     }

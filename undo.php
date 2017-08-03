@@ -17,5 +17,4 @@ $nowtime = time() - 180;
 // Insert new row
 $query = "delete from `artRatings` where (art1_id = $prevArt1) and (art2_id = $prevArt2) and (username = '$user') and (time > $nowtime);";
 mysqli_query($conn, $query);
-
- ?>
+?>

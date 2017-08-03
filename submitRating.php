@@ -22,16 +22,16 @@ $user = $_SESSION["person"];
 // error_log($user,3,"/var/tmp/my-errors.log");
 if (is_int($art1) && is_int($art2) && is_int($rating) && is_int($goodRec))
 {
-  if (($rating == 0) || ($rating == 1) || ($rating == 2) && (($goodRec == 1) || ($goodRec == 0))) 
-  {
-    // Get current time
-    $nowtime = time();
-    // Insert new row
-    $query = "insert into `artRatings` (art1_id,art2_id,rating,goodR,username,time,pair_id) values ($art1,$art2,$rating,$goodRec,'$user',$nowtime,$pairNum);";
-    mysqli_query($conn, $query);
-    // When ready to implement 
-    $json = updateCurrentPairsRemoveDone($user);
-    echo(json_encode($json));
-  }
+    if (($rating == 0) || ($rating == 1) || ($rating == 2) && (($goodRec == 1) || ($goodRec == 0))) 
+    {
+        // Get current time
+        $nowtime = time();
+        // Insert new row
+        $query = "insert into `artRatings` (art1_id,art2_id,rating,goodR,username,time,pair_id) values ($art1,$art2,$rating,$goodRec,'$user',$nowtime,$pairNum);";
+        mysqli_query($conn, $query);
+        // When ready to implement 
+        $json = updateCurrentPairsRemoveDone($user);
+        echo(json_encode($json));
+    }
 }
 ?>
