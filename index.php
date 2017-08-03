@@ -31,6 +31,6 @@
       <button value="Submit" onclick="login()" class="submit">Submit</button>
   </div>
   <br>
-  <div style="text-align: center"><a href="forgotinfo.php">Forgot Login Info?</a></div>
+  <div style="text-align: center"><a href="forgot.php">Forgot Login Info?</a></div>
 </body>
 </html>

@@ -50,8 +50,8 @@ body {
 }
 
 .inputBox {
-  position: absolute;
-  left: 600px;
+  margin-right: 0;
+  float: right;
   width: 250px;
   padding: 2px;
 }

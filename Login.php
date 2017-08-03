@@ -18,14 +18,12 @@
     if (password_verify($password, $passCheck)) {
       $_SESSION["person"] = $username;
       echo "go";
-        // header("Location:http://php.net/manual/en/function.header.php");
-        // die();
     }
     else {
       echo "Incorrect username or password.";
     }
   }
   else {
-    echo "hIncorrect username or password.";
+    echo "Incorrect username or password.";
   }
 ?>

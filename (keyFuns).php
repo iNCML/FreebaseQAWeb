@@ -4,16 +4,13 @@ function makeKey($userkey) {
   return $key;
 }
 
-function combineKeys($userkey, $serverKey)
+function combineKeys($userkey, $serverkey)
 {
   $n = strlen($userkey);
   $key = "";
-  for($i = 0; $i < $n; $i++)
-  {
-    $key = $key . $userkey[$i];
-    $key = $key . $serverKey[$i];
+  for($i = 0; $i < $n; $i++) {
+    $key = $key . $userkey[$i] . $serverkey[$i];
   }
   return $key;
 }
-
 ?>

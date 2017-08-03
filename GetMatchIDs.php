@@ -4,7 +4,7 @@ require_once("ConnectDB.php");
 function generateMatchIDsForUser($username)
 {
   $matchesPerUser = 20000;
-  $conn = returnConn();
+  //$conn = returnConn();
     
   $queryID = mysqli_prepare($conn, "SELECT `minID` FROM `FreebaseQA_Users` WHERE `minID` != null;");
   mysqli_stmt_execute($queryID);
@@ -17,7 +17,7 @@ function generateMatchIDsForUser($username)
 
 function insertIntoSQL($username, $minID)
 {
-  $conn = returnConn();
+  //$conn = returnConn();
   $insertArrayQuery = "UPDATE `FreebaseQA_User` SET `minID` = $minID WHERE `username` = '$username';";
   mysqli_query($conn, $insertArrayQuery);
 }
