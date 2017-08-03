@@ -4,7 +4,7 @@
   <title>FreebaseQA Analysis</title>
   <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
   <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
-  <link rel="stylesheet" type="text/css" href="ratings.css">
+  <link rel="stylesheet" type="text/css" href="evaluation.css">
   <script type="text/javascript" src="queryDB.js"></script>
 </head>
 <body>

@@ -2,8 +2,8 @@
   require_once("ConnectDB.php");
   require("GetMatchIDs.php");
   // get server-side key
-  $ini_array = parse_ini_file("config.ini");
-  $serverKey = $ini_array['k'];
+  //$ini_array = parse_ini_file("config.ini");
+  //$serverKey = $ini_array['k'];
   // parse JSON array
   $logininfo = $_POST['logininfo'];
   $logininfo = json_decode($logininfo);
