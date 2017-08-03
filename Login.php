@@ -8,7 +8,7 @@
   $username = $logininfo[0];
   $password = $logininfo[1];
 
-  $queryLogin = mysqli_prepare($conn, "SELECT `username`, `password` FROM `FreebaseQA_Users` WHERE `username` = ?");
+  $queryLogin = mysqli_prepare($conn, "SELECT `username`,`password` FROM `FreebaseQA_Users` WHERE `username` = ?");
   mysqli_stmt_bind_param($queryLogin, "s", $username);
   mysqli_stmt_execute($queryLogin);
   mysqli_stmt_bind_result($queryLogin, $userCheck, $passCheck);
@@ -26,6 +26,6 @@
     }
   }
   else {
-    echo "Incorrect username or password.";
+    echo "hIncorrect username or password.";
   }
 ?>

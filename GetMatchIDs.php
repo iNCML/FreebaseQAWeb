@@ -3,7 +3,7 @@ require_once("ConnectDB.php");
 
 function generateMatchIDsForUser($username)
 {
-  const matchesPerUser = 20000;
+  $matchesPerUser = 20000;
   $conn = returnConn();
     
   $queryID = mysqli_prepare($conn, "SELECT `minID` FROM `FreebaseQA_Users` WHERE `minID` != null;");
@@ -11,8 +11,7 @@ function generateMatchIDsForUser($username)
   mysqli_stmt_store_result($queryID);
   $nID = mysqli_stmt_num_rows($queryID);
     
-  $minID = $nID * matchesPerUser;
-
+  $minID = $nID * $matchesPerUser;
   insertIntoSQL($username, $minID);
 }
 

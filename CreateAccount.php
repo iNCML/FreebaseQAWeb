@@ -44,9 +44,9 @@
      echo "That username is already taken.";
      exit();
   }
-
   $hash = password_hash($password, PASSWORD_DEFAULT);
-  $insertQuery = "INSERT INTO `FreebaseQA_Users` (`email`, `username`, `password`) values ('$email', '$username', '$hash');";
+ 
+  $insertQuery = "INSERT INTO `FreebaseQA_Users` (`email`, `username`, `password`) VALUES ('$email', '$username', '$hash');";
   mysqli_query($conn, $insertQuery);
 
   generateMatchIDsForUser($username);

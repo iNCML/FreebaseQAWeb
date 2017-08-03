@@ -22,18 +22,20 @@ function login()
   xhr.send(logininfo);
   xhr.onreadystatechange = function()
   {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-      var response = xhr.responseText;
-      if (response == "go") {
-        window.location.replace("evaluation.php");
+      if (xhr.readyState == 4) {
+	  if (xhr.status == 200) {
+	      var response = xhr.responseText;
+	      if (response == "go") {
+		  window.location.replace("evaluation.php");
+	      }
+	      else {
+		  alert(response);
+	      }
+	  }
+	  else {
+	      alert("There was a problem with the request.");
+	  }
       }
-      else {
-        alert(response);
-      }
-    }
-    else {
-      alert("There was a problem with the request.");
-    }
   }
 }
 
@@ -50,12 +52,14 @@ function createAccount()
   xhr.send(logininfo);
   xhr.onreadystatechange = function()
   {
-    if (xhr.readyState == 4 && xhr.status == 200) {
-        var response = xhr.responseText;
-        alert(response);
-    }
-    else {
-      alert("There was a problem with the request.");
-    }  
+      if (xhr.readyState == 4) {
+	  if (xhr.status == 200) {
+            var response = xhr.responseText;
+            alert(response);
+	  }
+	else {
+	    alert("There was a problem with the request.");
+	}  
+      }
   }
 }
