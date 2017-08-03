@@ -20,22 +20,19 @@ function login()
   xhr.open("POST", "Login.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send(logininfo);
-  xhr.onreadystatechange = display_data;
-  function display_data()
+  xhr.onreadystatechange = function()
   {
-    if (xhr.readyState == 4) {
-      if (xhr.status == 200) {
-        var responseT = xhr.responseText;
-        if (responseT == "go") {
-          window.location.replace("evaluation.php");
-        }
-        else {
-          alert(responseT);
-        }
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      var response = xhr.responseText;
+      if (response == "go") {
+        window.location.replace("evaluation.php");
       }
       else {
-        alert("There was a problem with the request.");
+        alert(response);
       }
+    }
+    else {
+      alert("There was a problem with the request.");
     }
   }
 }
@@ -48,20 +45,17 @@ function createAccount()
   var password = document.getElementById('passwordSignUp').value;
   var loginarray = [email, username, password];
   var logininfo = "logininfo=" + JSON.stringify(loginarray);
-  xhr.open("POST", "CreateAccount.php",true);
+  xhr.open("POST", "CreateAccount.php", true);
   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
   xhr.send(logininfo);
-  xhr.onreadystatechange = display_data;
-  function display_data()
+  xhr.onreadystatechange = function()
   {
-    if (xhr.readyState == 4) {
-      if (xhr.status == 200) {
-        var responseT = xhr.responseText;
-        alert(responseT);
-      }
-      else {
-        alert("There was a problem with the request.");
-      }
+    if (xhr.readyState == 4 && xhr.status == 200) {
+        var response = xhr.responseText;
+        alert(response);
     }
+    else {
+      alert("There was a problem with the request.");
+    }  
   }
 }
