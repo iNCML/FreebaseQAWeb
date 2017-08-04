@@ -3,27 +3,26 @@ session_start();
 
 require_once('ConnectDB.php');
 require('GetMatchIDs.php');
-// Get in use article ids
-$inUseIDs = $_POST['artId'];
-$inUseIDs = json_decode($inUseIDs);
-$pairNum = $inUseIDs[0];
+//$inUseIDs = $_POST['artId'];
+//$inUseIDs = json_decode($inUseIDs);
+//$pairNum = $inUseIDs[0];
 $username = $_SESSION["person"];
 //$username = "atjoseph";
 // Get array of article ids to select from
-$allPairs = array_map('str_getcsv', file('articlePairs.csv'));
+//$allPairs = array_map('str_getcsv', file('articlePairs.csv'));
 // Get individual user pairs
-$pairs = getUserPairs($username);
+//$pairs = getUserPairs($username);
 //print_r($pairs);
 // Generate a random number
-$num =  rand( 0, count($pairs) );
+//$num =  rand( 0, count($pairs) );
 // Select the article
-$artId1 = $allPairs[$pairs[$num]][0];
-$artId2 = $allPairs[$pairs[$num]][1];
+//$artId1 = $allPairs[$pairs[$num]][0];
+//$artId2 = $allPairs[$pairs[$num]][1];
 
 // exit();
 /* check connection */
 if ($conn->connect_error) {
-    printf("Connect failed: %s\n", $conn->connect_error);
+    //printf("Connect failed: %s\n", $conn->connect_error);
     echo("Conn failed");
     exit();
 }

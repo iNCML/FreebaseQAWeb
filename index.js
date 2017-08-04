@@ -25,7 +25,7 @@ function createAccount()
     {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                var response = xhr.responseText;
+                var responseT = xhr.responseText;
                 alert(response);
             }
             else {
@@ -49,12 +49,12 @@ function login()
     {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                var response = xhr.responseText;
-                if (response == "go") {
+                var responseT = xhr.responseText;
+                if (responseT == "go") {
                     window.location.replace("evaluation.php");
                 }
                 else {
-                    alert(response);
+                    alert(responseT);
                 }
             }
             else {

@@ -1,20 +1,12 @@
 <?php
 session_start();
-// Connect to DB
-require_once('dbopen.php');
-// Parse input
-// Note it is send as a JSON array
-// So need to decode it
-$artIds = $_POST['artIds'];
-$artIds = json_decode($artIds);
-$prevArt1 = $artIds[0];
-$prevArt2 = $artIds[1];
 
-$user = $_SESSION["person"];
-// Get current time
-$nowtime = time() - 180;
+require_once('ConnectDB.php');
+$prevMatchID = $_POST['previnfo'];
+$username = $_SESSION["person"];
 
-// Insert new row
-$query = "delete from `artRatings` where (art1_id = $prevArt1) and (art2_id = $prevArt2) and (username = '$user') and (time > $nowtime);";
+$time = time() - 60;
+
+$query = "DELETE FROM `FreebaseQA_Evaluations` WHERE (`matchID` = $prevMatchID) AND (`username` = '$username') AND (`time` > $time);";
 mysqli_query($conn, $query);
 ?>

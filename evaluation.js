@@ -1,16 +1,6 @@
 var matchID;
 var prevMatchID;
 
-var art1;
-var art2;
-var prevArt1;
-var prevArt2;
-var art1Cat;
-var art2Cat;
-var pairNum;
-var tmpPairNum;
-var numLeft;
-
 function openAjax()
 {
     var xhr;
@@ -23,7 +13,17 @@ function openAjax()
     return xhr;
 }
 
-/*function updateRatingsLocations()
+/*var art1;
+var art2;
+var prevArt1;
+var prevArt2;
+var art1Cat;
+var art2Cat;
+var pairNum;
+var tmpPairNum;
+var numLeft;
+
+function updateRatingsLocations()
 {
     var h1 = document.getElementById("art1").clientHeight;
     var h2 = document.getElementById("art2").clientHeight;
@@ -111,8 +111,9 @@ function newPair(onSubmit)
     
     var xhr = openAjax();
     //var inUseIDs = "matchID=" + JSON.stringify(matchID);
-    xhr.open("POST", "GetMatch.php" ,true);
+    xhr.open("POST", "GetMatch.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
     //xhr.send(inUseIDs);
     xhr.onreadystatechange = function()
     {

@@ -1,7 +1,7 @@
 <?php
 require_once("ConnectDB.php");
 
-function generateMatchIDsForUser($username)
+/*function generateMatchIDsForUser($username)
 {
     $matchesPerUser = 20000;
     //$conn = returnConn();
@@ -70,7 +70,7 @@ function getUserPairs($username)
         }
     }
     return $currentPairs;
-}
+}*/
 
 //generatePairsPerUser("atjoseph");
 //updateCurrentPairsRemoveDone("t6");

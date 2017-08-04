@@ -3,9 +3,9 @@ require_once('ConnectDB.php');
 
 // check for input
 if (isset($_POST) & !empty($_POST)){
-    $email= mysqli_real_escape_string($conn, $_POST['emailinfo']);
+    $email = mysqli_real_escape_string($conn, $_POST['emailinfo']);
 
-    $query = "SELECT `username` FROM `FreebaseQA_Users` WHERE `email` = '$email'";
+    $query = "SELECT * FROM `FreebaseQA_Users` WHERE `email` = '$email'";
     $result = mysqli_query($conn, $query);
     $count = mysqli_num_rows($result);
     if ($count == 1){

@@ -2,7 +2,6 @@
 session_start();
 
 require_once('ConnectDB.php');
-require('GetMatchIDs.php');
 // parse JSON array
 $ratinginfo = $_POST['ratinginfo'];
 $ratinginfo = json_decode($ratinginfo);
@@ -24,7 +23,22 @@ $art2Like = (int) $artIds[7];*/
 if (is_int($matchID) && is_int($rating)) {
     if (($rating == 0) || ($rating == 1) || ($rating == 2)) {
         $time = time();
-        $query = "INSERT INTO `FreebaseQA_Evaluations` (`matchID`, `rating`, `username`, `time`) VALUES ($matchID, $rating, $username, $time);";
+        // submit the rating
+        $query = "INSERT INTO `FreebaseQA_Evaluations` (`matchID`, `rating`, `username`, `time`) VALUES ($matchID, $rating, '$username', $time);";
+        mysqli_query($conn, $query);
+        
+        // update user count and currentID
+        $query = "SELECT * FROM `FreebaseQA_Users` WHERE `username` = '$username';";
+        $result = mysqli_query($conn, $query);
+        
+        $count = mysqli_fetch_assoc($result)['count'];
+        $count = $count + 1;
+        $query = "UPDATE `FreebaseQA_Users` SET `count` = $count WHERE `username` = '$username';";
+        mysqli_query($conn, $query);
+        
+        $currentID = mysqli_fetch_assoc($result)['currentID'];
+        $currentID = $currentID + 1;
+        $query = "UPDATE `FreebaseQA_Users` SET `currentID` = $currentID WHERE `username` = '$username';";
         mysqli_query($conn, $query);
         
         //$json = updateCurrentPairsRemoveDone($user);
