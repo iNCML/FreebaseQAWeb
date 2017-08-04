@@ -14,7 +14,7 @@ var numLeft;
 function openAjax()
 {
     var xhr;
-    if(window.XMLHttpRequest) {
+    if (window.XMLHttpRequest) {
         xhr = new XMLHttpRequest();
     }
     else if (window.ActiveXObject) {
@@ -95,7 +95,7 @@ function submit(rating)
                 // alert("There was a problem with the request.");
             }
         }
-    }
+    };
     //}
 }
 
@@ -122,16 +122,16 @@ function newPair(onSubmit)
                 //console.log(responseT.artText);
                                
                 document.getElementById("question").innerHTML= "<b>" + responseT.question + "</b>";
-		document.getElementById("answer").innerHTML= "<b>" + responseT.answer + "</b>";
-		document.getElementById("subject").innerHTML= responseT.subject;
-		document.getElementById("predicate").innerHTML= responseT.predicate;
-		document.getElementById("m-predicate").innerHTML= responseT.mPredicate;
-		document.getElementById("object").innerHTML= responseT.object;
+                document.getElementById("answer").innerHTML= "<b>" + responseT.answer + "</b>";
+                document.getElementById("subject").innerHTML= responseT.subject;
+                document.getElementById("predicate").innerHTML= responseT.predicate;
+                document.getElementById("m-predicate").innerHTML= responseT.mPredicate;
+                document.getElementById("object").innerHTML= responseT.object;
    
                 prevMatchID = matchID;
                 matchID = responseT.matchID;
                 
-		/*var rating = document.getElementsByName('rating');
+		        /*var rating = document.getElementsByName('rating');
                 for(var i = 0; i < rating.length; i++){
                     rating[i].checked = false;
                 }
@@ -144,32 +144,29 @@ function newPair(onSubmit)
                 showSnackBar("There was a problem with the request.");
             }
         }
-    }
+    };
 }
 
 function undo()
 {
-    var sendOver = [prevArt1,prevArt2];
-    var artIds = "artIds=" + JSON.stringify(sendOver);
+    //var sendOver = [prevArt1,prevArt2];
+    //var artIds = "artIds=" + JSON.stringify(sendOver);
+    var previnfo = "previnfo=" + prevMatchID;
     var xhr = openAjax();
-    xhr.open("POST", "undo.php",true);
+    xhr.open("POST", "Undo.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(artIds);
-    xhr.onreadystatechange = display_data;
-    function display_data()
+    xhr.send(previnfo);
+    xhr.onreadystatechange = function()
     {
-        if(xhr.readyState == 4)
-        {
-            if(xhr.status == 200)
-            {
-                showSnackBar("Deleted previous rating from database.");
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+                showSnackBar("The previous rating was deleted from the database.");
             }
-            else
-            {
+            else {
                 showSnackBar("There was a problem with the request");
             }
         }
-    }
+    };
 }
 
 /*function more(ele)
@@ -226,24 +223,20 @@ function retractMore()
 function logout()
 {
     var xhr = openAjax();
-    xhr.open("POST", "logout.php",true);
+    xhr.open("POST", "Logout.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.send();
-    xhr.onreadystatechange = display_data;
-    function display_data()
+    xhr.onreadystatechange = function()
     {
-        if(xhr.readyState == 4)
-        {
-            if(xhr.status == 200)
-            {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
                 window.location.replace("index.php");
             }
-            else
-            {
+            else {
                 alert("There was a problem with the request.");
             }
         }
-    }
+    };
 }
 
 function showSnackBar(text) {

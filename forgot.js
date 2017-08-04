@@ -28,7 +28,7 @@ function requestKey()
                 alert("There was a problem with the request.");
             }
         }
-    }
+    };
 }
 
 function resetPassword()
@@ -53,5 +53,5 @@ function resetPassword()
                 alert("There was a problem with the request.");
             }
         }
-    }
+    };
 }

@@ -25,10 +25,10 @@
             </table>
         </div>
         <div id='triplet'>
-            <span id='subject' class="triplet-span">Subject</span><span style="font-size: 20pt"> &rarr;</span>
-            <span id='predicate' class="triplet-span">Predicate</span><span style="font-size: 20pt"> &rarr;</span>
-            <span id='m-predicate' class="triplet-span">Mediator Predicate</span><span style="font-size: 20pt"> &rarr;</span>
-            <span id='object' class="triplet-span">Object</span>
+            <span id='subject' class="triplet-span">joe clark</span><span style="font-size: 20pt"> &rarr;</span>
+            <span id='predicate' class="triplet-span">government.politician.government_positions_held</span><span style="font-size: 20pt"> &rarr;</span>
+            <span id='m-predicate' class="triplet-span">government.governmental_jurisdiction.governing_officials</span><span style="font-size: 20pt"> &rarr;</span>
+            <span id='object' class="triplet-span">canada</span>
         </div>
 
         <!--<div id='art1'>
@@ -61,10 +61,10 @@
             <button id="1" onclick="submit(1)" class="rating-button" style="background-color: rgba(102, 204, 255, 0.7)"><b>Somewhat Relevant</b></button>
             <button id="2" onclick="submit(2)" class="rating-button" style="background-color: rgba(102, 204, 255, 1)"><b>Completely Relevant</b></button>
             <br><br>
-            <button id="undo" onclick="" class="rating-button" style="background-color: #ffcc66">UNDO</button>
-            <button id="skip" onclick="" class="rating-button" style="background-color: #ffcc66">SKIP</button>
+            <button id="undo" onclick="undo()" class="rating-button" style="background-color: #ffcc66">UNDO</button>
+            <button id="skip" onclick="newPair(false)" class="rating-button" style="background-color: #ffcc66">SKIP</button>
             <br><br><br><br><br>
-            <button id="logout" onclick="newPair()" class="menu-button">Logout</button>
+            <button id="logout" onclick="logout()" class="menu-button">Logout</button>
         </div>
         <div id="snackbar">Temporary message (to be replaced)...</div>
     </body>

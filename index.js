@@ -32,7 +32,7 @@ function createAccount()
                 alert("There was a problem with the request.");
             }  
         }
-    }
+    };
 }
 
 function login()
@@ -61,5 +61,5 @@ function login()
                 alert("There was a problem with the request.");
             }
         }
-    }
+    };
 }
