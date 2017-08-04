@@ -5,7 +5,7 @@
         <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
         <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="evaluation.css">
-        <script type="text/javascript" src="queryDB.js"></script>
+        <script type="text/javascript" src="evaluation.js"></script>
     </head>
     <body>
         <div class="navbar navbar-default navbar-fixed-top">
@@ -57,16 +57,15 @@
             <!--<input type="radio" name="rating" class="ratingRadio" value="0">0: Not Similar
             <input type="radio" name="rating" class="ratingRadio" value="1">1: Similar
             <input type="radio" name="rating" class="ratingRadio" value="2">2: Very Similar-->
-            <button id="0" onclick="" class="rating-button" style="background-color: rgba(102, 204, 255, 0.4)">Not Relevant</button>
-            <button id="1" onclick="" class="rating-button" style="background-color: rgba(102, 204, 255, 0.7)">Somewhat Relevant</button>
-            <button id="2" onclick="" class="rating-button" style="background-color: rgba(102, 204, 255, 1)">Completely Relevant</button>
+            <button id="0" onclick="submit(0)" class="rating-button" style="background-color: rgba(102, 204, 255, 0.4)"><b>Not Relevant</b></button>
+            <button id="1" onclick="submit(1)" class="rating-button" style="background-color: rgba(102, 204, 255, 0.7)"><b>Somewhat Relevant</b></button>
+            <button id="2" onclick="submit(2)" class="rating-button" style="background-color: rgba(102, 204, 255, 1)"><b>Completely Relevant</b></button>
             <br><br>
-            <button id="undo" onclick="" class="rating-button" style="background-color: #ffcc66">Undo Rating</button>
-            <button id="submit" onclick="" class="rating-button" style="background-color: #ffcc66"><b>SUBMIT RATING</b></button>
-            <button id="skip" onclick="" class="rating-button" style="background-color: #ffcc66">Skip Match</button>
+            <button id="undo" onclick="" class="rating-button" style="background-color: #ffcc66">UNDO</button>
+            <button id="skip" onclick="" class="rating-button" style="background-color: #ffcc66">SKIP</button>
             <br><br><br><br><br>
             <button id="logout" onclick="newPair()" class="menu-button">Logout</button>
         </div>
-        <div id="snackbar">Some text some message..</div>
+        <div id="snackbar">Temporary message (to be replaced)...</div>
     </body>
 </html>

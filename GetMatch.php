@@ -1,8 +1,8 @@
 <?php
 session_start();
-// Connect to DB
-require_once('dbopen.php');
-require('computeUserPairs.php');
+
+require_once('ConnectDB.php');
+require('GetMatchIDs.php');
 // Get in use article ids
 $inUseIDs = $_POST['artId'];
 $inUseIDs = json_decode($inUseIDs);
