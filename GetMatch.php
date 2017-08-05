@@ -2,7 +2,10 @@
 session_start();
 
 require_once('ConnectDB.php');
-require('GetMatchIDs.php');
+
+$matchesPerUser = 20000;
+
+//require('GetMatchIDs.php');
 //$inUseIDs = $_POST['artId'];
 //$inUseIDs = json_decode($inUseIDs);
 //$pairNum = $inUseIDs[0];
@@ -21,48 +24,67 @@ $username = $_SESSION["person"];
 
 // exit();
 /* check connection */
-if ($conn->connect_error) {
+/*if ($conn->connect_error) {
     //printf("Connect failed: %s\n", $conn->connect_error);
     echo("Conn failed");
     exit();
+}*/
+echo($username);
+
+$query = "SELECT * FROM `FreebaseQA_Users` WHERE `username` = '$username';";
+$result = mysqli_query($conn, $query);
+$minID = mysqli_fetch_assoc($result)['minID'];
+$currentID = mysqli_fetch_assoc($result)['currentID'];
+$count = mysqli_fetch_assoc($result)['count'];
+
+// if the current matchID goes past the last match in the table, start from the beginning again
+$query = "SELECT * FROM `FreebaseQA_Matches`;";
+$result = mysqli_query($conn, $query);
+$nMatches = mysqli_num_rows($result);
+
+if ($currentID > $nMatches) {
+    $currentID = 1;
+    $query = "UPDATE `FreebaseQA_Users` SET `currentID` = $currentID WHERE `username` = '$username';";
+    mysqli_query($conn, $query);
 }
 
-$query = "select * from `id2art` where `art_id` = $artId1 or `art_id` = $artId2";
-// echo("Something");
-// exit();
-/* Select queries return a resultset */
-if ($result = mysqli_query($conn, $query)) {
-    $n = mysqli_num_rows($result);
-    $json = array();
-    // Collect variables to send back to javascript
-    $json['pairNum']= $pairs[$num];
-    $json['artId1'] = $artId1;
-    $json['artId2'] = $artId2;
-    $rowCount = 0;
-    while ($row = mysqli_fetch_assoc($result)) {
-        // Make the article info in JSON
-        if ($rowCount == 0)
-        {
-            $json['art_id1']=$row['art_id'];
-            $json['title1']=$row['title'];
-            $json['category1']=$row['category'];
-            $json['artText1']=$row['artText'];
-        }
-        else
-        {
-            $json['art_id2']=$row['art_id'];
-            $json['title2']=$row['title'];
-            $json['category2']=$row['category'];
-            $json['artText2']=$row['artText'];
-        }
-        $rowCount = $rowCount + 1;
-    }
-    /* free result set */
-    mysqli_free_result($result);
+// if user gets to the end of their assigned range, look for skipped questions
+$maxID = $minID + $matchesPerUser;
+if ($currentID > $maxID) {
+    $query = "SELECT * FROM `FreebaseQA_Evaluations` WHERE `username` = '$username' AND `matchID` > $minID AND `matchID` < $maxID AND `rating` = 3 LIMIT 1;"; // rating = 3 is a skipped match
+    $result = mysqli_query($conn, $query);
+    $matchID = mysqli_fetch_assoc($result)['matchID'];
+    
+    echo json_encode(obtainInfo($matchID));
 }
+else {
+    echo json_encode(obtainInfo($currentID));
+}
+
+
+/* free result set */
+//mysqli_free_result($result);
 
 // Return results to client
-// echo("SOmething");
-echo json_encode($json);
+// echo("Something");
+
+function obtainInfo($matchID) {
+    $query = "SELECT * FROM `FreebaseQA_Matches` WHERE `matchID` = $matchID;";
+    $result = mysqli_query($conn, $query);
+
+    $json = array();
+    $json['question'] = mysqli_fetch_assoc($result)['question'];
+    $json['answer'] = ucwords(mysqli_fetch_assoc($result)['object']);
+    $json['subject'] = mysqli_fetch_assoc($result)['subject'];
+    $json['subjectTag'] = mysqli_fetch_assoc($result)['subject_tag'];
+    $json['subjectID'] = mysqli_fetch_assoc($result)['subjectID'];
+    $json['predicate'] = mysqli_fetch_assoc($result)['predicate'];
+    $json['mediatorPredicate'] = mysqli_fetch_assoc($result)['mediator_predicate'];
+    $json['objectID'] = mysqli_fetch_assoc($result)['objectID'];
+    $json['object'] = mysqli_fetch_assoc($result)['object'];
+    
+    return $json;
+}
+
 
 ?>

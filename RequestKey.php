@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once('ConnectDB.php');
 
 // check for input
@@ -10,7 +12,7 @@ if (isset($_POST) & !empty($_POST)){
     $count = mysqli_num_rows($result);
     if ($count == 1){
         $username = mysqli_fetch_assoc($result)['username'];
-        // create password expiry time
+        // create key expiry time
         $expiry = time() + 86400;
         // create password token
         $token = bin2hex(openssl_random_pseudo_bytes(16));

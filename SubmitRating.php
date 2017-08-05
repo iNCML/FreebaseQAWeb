@@ -33,12 +33,10 @@ if (is_int($matchID) && is_int($rating)) {
         
         $count = mysqli_fetch_assoc($result)['count'];
         $count = $count + 1;
-        $query = "UPDATE `FreebaseQA_Users` SET `count` = $count WHERE `username` = '$username';";
-        mysqli_query($conn, $query);
-        
         $currentID = mysqli_fetch_assoc($result)['currentID'];
         $currentID = $currentID + 1;
-        $query = "UPDATE `FreebaseQA_Users` SET `currentID` = $currentID WHERE `username` = '$username';";
+
+        $query = "UPDATE `FreebaseQA_Users` SET `currentID` = $currentID, `count` = $count WHERE `username` = '$username';";
         mysqli_query($conn, $query);
         
         //$json = updateCurrentPairsRemoveDone($user);

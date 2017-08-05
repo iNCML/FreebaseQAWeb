@@ -33,8 +33,8 @@ mysqli_stmt_store_result($queryEmail);*/
 $query = "SELECT `email` FROM `FreebaseQA_Users` WHERE `email` = '$email';";
 $result = mysqli_query($conn, $query);
 //$nEmail = mysqli_stmt_num_rows($queryEmail);
-$nEmail = mysqli_num_rows($result);
-if ($nEmail >= 1) {
+$nEmails = mysqli_num_rows($result);
+if ($nEmails >= 1) {
     echo "There is already an account associated with this email.";
     exit();
 }
@@ -47,30 +47,23 @@ mysqli_stmt_store_result($queryUser);*/
 $query = "SELECT `username` FROM `FreebaseQA_Users` WHERE `username` = '$username';";
 $result = mysqli_query($conn, $query);
 //$nUser = mysqli_stmt_num_rows($queryUser);
-$nUser = mysqli_num_rows($result);
-if ($nUser >= 1) {
+$nUsers = mysqli_num_rows($result);
+if ($nUsers >= 1) {
     echo "That username is already taken.";
     exit();
 }
-
+// save password as hash
 $hash = password_hash($password, PASSWORD_DEFAULT);
-$query = "INSERT INTO `FreebaseQA_Users` (`username`, `password`, `email`, `count`) VALUES ('$username', '$hash', '$email', 0);";
-mysqli_query($conn, $query);
-
-//$conn = returnConn();
-
-/*$queryID = mysqli_prepare($conn, "SELECT `minID` FROM `FreebaseQA_Users` WHERE `minID` != null;");
-mysqli_stmt_execute($queryID);
-mysqli_stmt_store_result($queryID);
-$nID = mysqli_stmt_num_rows($queryID);*/
-$query = "SELECT `minID` FROM `FreebaseQA_Users` WHERE `minID` != null;";
+// generate random minID for user based on total number of matches
+$query = "SELECT * FROM `FreebaseQA_Matches`;";
 $result = mysqli_query($conn, $query);
-$nID = mysqli_num_rows($result);
-$minID = $nID * $matchesPerUser;
+$nMatches = mysqli_num_rows($result);
+$minID = rand(0, $nMatches);
+
+$query = "INSERT INTO `FreebaseQA_Users` (`username`, `password`, `email`, `minID`, `currentID`, `count`) VALUES ('$username', '$hash', '$email', $minID, $minID, 0);";
+mysqli_query($conn, $query);
 
 //$conn = returnConn();
-$query = "UPDATE `FreebaseQA_Users` SET `minID` = $minID, `currentID` = $minID WHERE `username` = '$username';";
-mysqli_query($conn, $query);
 
 //generateMatchIDsForUser($username);
 
