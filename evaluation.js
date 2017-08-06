@@ -108,7 +108,8 @@ function newPair(onSubmit)
         //showSnackBar("Rating has been posted " + numLeft + " left. Generating New Pair.");
         showSnackBar("Submitted. Generating new match...");
     }
-    
+    //document.getElementByID('question').innerHTML = "what's up";
+
     var xhr = openAjax();
     //var inUseIDs = "matchID=" + JSON.stringify(matchID);
     xhr.open("POST", "GetMatch.php", true);
@@ -119,20 +120,26 @@ function newPair(onSubmit)
     {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                var responseT = JSON.parse(xhr.responseText);
-                //console.log(responseT.artText);
-                               
-                document.getElementById("question").innerHTML= "<b>" + responseT.question + "</b>";
-                document.getElementById("answer").innerHTML= "<b>" + responseT.answer + "</b>";
-                document.getElementById("subject").innerHTML= responseT.subject;
-                document.getElementById("predicate").innerHTML= responseT.predicate;
-                document.getElementById("m-predicate").innerHTML= responseT.mPredicate;
-                document.getElementById("object").innerHTML= responseT.object;
+                //var responseT = xhr.responseText;
+		var responseT = JSON.parse(xhr.responseText);
+                //console.log(responseT);
+		
+                document.getElementById('question').innerHTML = "<b>" + responseT.question + "</b>";
+                document.getElementById('answer').innerHTML = "<b>" + responseT.answer + "</b>";
+                document.getElementById('subject').innerHTML = responseT.subject;
+                document.getElementById('predicate').innerHTML = "<b>" + responseT.predicate + "</b>";
+		if (responseT.mediator_predicate != 'null' && responseT.predicate != responseT.mediator_predicate) {
+                    document.getElementById('m-predicate').innerHTML = "(" + responseT.mediator_predicate + ")";
+                }
+		else {
+		    document.getElementById('m-predicate').innerHTML = "<br>";
+		}
+		document.getElementById('object').innerHTML = responseT.object;
    
                 prevMatchID = matchID;
                 matchID = responseT.matchID;
                 
-		        /*var rating = document.getElementsByName('rating');
+		/*var rating = document.getElementsByName('rating');
                 for(var i = 0; i < rating.length; i++){
                     rating[i].checked = false;
                 }

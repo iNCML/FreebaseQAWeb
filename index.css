@@ -1,5 +1,5 @@
 .navbar-fixed-top {
-    min-height: 60px;
+    min-height: 75px;
     position: absolute;
     left: 0;
     right: 0;
@@ -12,16 +12,17 @@
 
 .navbar-text {
     text-align: center;
-    font-size: 20;
+    font-size: 20px;
     float: left;
 }
 
 .navbar-fixed-top .img-responsive {
-    max-width: 110px;
+    max-width: 140px;
     float: left;
 }
 
 .img-responsive {
+    padding-left: 10px;
     padding-right: 10px;
 }
 

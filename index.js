@@ -26,7 +26,7 @@ function createAccount()
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
                 var responseT = xhr.responseText;
-                alert(response);
+                alert(responseT);
             }
             else {
                 alert("There was a problem with the request.");

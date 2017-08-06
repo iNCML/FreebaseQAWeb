@@ -20,15 +20,17 @@
             <table class="qa-table" align="center">
                 <tr><th class="qa-th">Question</th>
                     <th class="qa-th">Answer</th></tr>
-                <tr><td class="qa-td">On June 4th 1979, Joe Clark became the 16th and youngest Prime Minister of which country?</td>
-                    <td class="qa-td">Canada</td></tr>
+                <tr><td id='question' class="qa-td">On June 4th 1979, Joe Clark became the 16th and youngest Prime Minister of which country?</td>
+                    <td id='answer' class="qa-td">Canada</td></tr>
             </table>
         </div>
         <div id='triplet'>
             <span id='subject' class="triplet-span">joe clark</span><span style="font-size: 20pt"> &rarr;</span>
-            <span id='predicate' class="triplet-span">government.politician.government_positions_held</span><span style="font-size: 20pt"> &rarr;</span>
-            <span id='m-predicate' class="triplet-span">government.governmental_jurisdiction.governing_officials</span><span style="font-size: 20pt"> &rarr;</span>
+            <span id='predicate' class="triplet-span" style="font-size: 16pt">government.politician.government_positions_held</span><span style="font-size: 20pt"> &rarr;</span>
+            <!--<span id='m-predicate' class="triplet-span">government.governmental_jurisdiction.governing_officials</span><span style="font-size: 20pt"> &rarr;</span>-->
             <span id='object' class="triplet-span">canada</span>
+	    <br>
+	    <p id='m-predicate'>government.governmental_jurisdiction.governing_officials</p>
         </div>
 
         <!--<div id='art1'>
