@@ -20,8 +20,8 @@
             <table class="qa-table" align="center">
                 <tr><th class="qa-th">Question</th>
                     <th class="qa-th">Answer</th></tr>
-                <tr><td class="qa-td">Who was the first president of the United States?</td>
-                    <td class="qa-td">George Washington</td></tr>
+                <tr><td class="qa-td">On June 4th 1979, Joe Clark became the 16th and youngest Prime Minister of which country?</td>
+                    <td class="qa-td">Canada</td></tr>
             </table>
         </div>
         <div id='triplet'>
@@ -62,7 +62,7 @@
             <button id="2" onclick="submit(2)" class="rating-button" style="background-color: rgba(102, 204, 255, 1)"><b>Completely Relevant</b></button>
             <br><br>
             <button id="undo" onclick="undo()" class="rating-button" style="background-color: #ffcc66">UNDO</button>
-            <button id="skip" onclick="newPair(false)" class="rating-button" style="background-color: #ffcc66">SKIP</button>
+            <button id="skip" onclick="skip()" class="rating-button" style="background-color: #ffcc66">SKIP</button>
             <br><br><br><br><br>
             <button id="logout" onclick="logout()" class="menu-button">Logout</button>
         </div>
