@@ -7,30 +7,6 @@ $matchesPerUser = 20000;
 
 $username = $_SESSION["person"];
 
-//require('GetMatchIDs.php');
-//$inUseIDs = $_POST['artId'];
-//$inUseIDs = json_decode($inUseIDs);
-//$pairNum = $inUseIDs[0];
-//$username = "atjoseph";
-// Get array of article ids to select from
-//$allPairs = array_map('str_getcsv', file('articlePairs.csv'));
-// Get individual user pairs
-//$pairs = getUserPairs($username);
-//print_r($pairs);
-// Generate a random number
-//$num =  rand( 0, count($pairs) );
-// Select the article
-//$artId1 = $allPairs[$pairs[$num]][0];
-//$artId2 = $allPairs[$pairs[$num]][1];
-
-// exit();
-/* check connection */
-/*if ($conn->connect_error) {
-    //printf("Connect failed: %s\n", $conn->connect_error);
-    echo("Conn failed");
-    exit();
-}*/
-
 $query = "SELECT * FROM `FreebaseQA_Users` WHERE `username` = '$username';";
 $result = mysqli_query($conn, $query);
 $userInfo = mysqli_fetch_assoc($result);
@@ -52,23 +28,14 @@ if ($currentID > $nMatches) {
 // if user gets to the end of their assigned range, look for skipped questions
 $maxID = $minID + $matchesPerUser;
 if ($currentID > $maxID) {
-    $query = "SELECT * FROM `FreebaseQA_Evaluations` WHERE `username` = '$username' AND `matchID` > $minID AND `matchID` < $maxID AND `rating` = 3 LIMIT 1;"; // rating = 3 is a skipped match
+    $query = "SELECT * FROM `FreebaseQA_Evaluations` WHERE `username` = '$username' AND `matchID` > $minID AND `matchID` < $maxID AND `rating` = 3 LIMIT 1;"; // a rating of 3 is a deferred match
     $result = mysqli_query($conn, $query);
-    $matchID = mysqli_fetch_assoc($result)['matchID'];    
-    obtainInfo($matchID);    
-    //echo json_encode(obtainInfo($matchID));
+    $matchID = mysqli_fetch_assoc($result)['matchID']; 
+    obtainInfo($matchID);
 }
 else {
     obtainInfo($currentID);
-    //echo json_encode(obtainInfo($currentID));
 }
-
-
-/* free result set */
-//mysqli_free_result($result);
-
-// Return results to client
-// echo("Something");
 
 function obtainInfo($ID) {
     $query = "SELECT * FROM `TEMP_Matches` WHERE `matchID` = $ID;";

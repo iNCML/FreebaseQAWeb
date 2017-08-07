@@ -45,6 +45,7 @@ body {
 
 #accBlock1, #accBlock2 {
     clear: both; 
+    margin-top: 30px;
     margin-left: auto; 
     margin-right: auto; 
     width: 400px;

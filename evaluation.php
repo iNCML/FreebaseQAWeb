@@ -20,54 +20,31 @@
             <table class="qa-table" align="center">
                 <tr><th class="qa-th">Question</th>
                     <th class="qa-th">Answer</th></tr>
-                <tr><td id='question' class="qa-td">On June 4th 1979, Joe Clark became the 16th and youngest Prime Minister of which country?</td>
-                    <td id='answer' class="qa-td">Canada</td></tr>
+                <tr><td id='question' class="qa-td"></td>
+                    <td id='answer' class="qa-td"></td></tr>
             </table>
         </div>
         <div id='triplet'>
-            <span id='subject' class="triplet-span">joe clark</span><span style="font-size: 20pt"> &rarr;</span>
-            <span id='predicate' class="triplet-span" style="font-size: 16pt">government.politician.government_positions_held</span><span style="font-size: 20pt"> &rarr;</span>
+            <span id='subject' class="triplet-span"></span><span style="font-size: 16pt"> &rarr;</span>
+            <span id='predicate' class="triplet-span" style="font-size: 14pt"></span><span style="font-size: 16pt"> &rarr;</span>
             <!--<span id='m-predicate' class="triplet-span">government.governmental_jurisdiction.governing_officials</span><span style="font-size: 20pt"> &rarr;</span>-->
-            <span id='object' class="triplet-span">canada</span>
+            <span id='object' class="triplet-span"></span>
 	    <br>
-	    <p id='m-predicate'>government.governmental_jurisdiction.governing_officials</p>
+	    <p id='m-predicate'></p>
         </div>
-
-        <!--<div id='art1'>
-            <p id='art1text'>
-                <span id = "title1" class = "title"></span>
-                <span id = "paraArt1" class="arttext">
-                    <span id = "teaser1"></span><span id = "complete1"></span>
-                    <span id = "more1" onclick="more(this)">more...</span>
-                </span>
-            </p>
-        </div>
-
-        <div id='art2'>
-            <p id='art2text'>
-                <span id = "title2" class = "title"></span>
-                <span id = "paraArt2" class="arttext">
-                    <span id = "teaser2"></span><span id = "complete2"></span>
-                    <span id = "more2" onclick="more(this)">more...</span>
-                </span>
-            </p>
-        </div>-->
 
         <div id='ratings'>
-            <b>In term of answering the question, how relevant is this triplet/quadruplet?</b>
+            <b>In term of answering the question, how relevant is this triplet/quadruplet? </b><a href="javascript:copyToClipboard()">(COPY TO CLIPBOARD)</a>
             <br><br>
-            <!--<input type="radio" name="rating" class="ratingRadio" value="0">0: Not Similar
-            <input type="radio" name="rating" class="ratingRadio" value="1">1: Similar
-            <input type="radio" name="rating" class="ratingRadio" value="2">2: Very Similar-->
             <button id="0" onclick="submit(0)" class="rating-button" style="background-color: rgba(102, 204, 255, 0.4)"><b>Not Relevant</b></button>
             <button id="1" onclick="submit(1)" class="rating-button" style="background-color: rgba(102, 204, 255, 0.7)"><b>Somewhat Relevant</b></button>
             <button id="2" onclick="submit(2)" class="rating-button" style="background-color: rgba(102, 204, 255, 1)"><b>Completely Relevant</b></button>
             <br><br>
             <button id="undo" onclick="undo()" class="rating-button" style="background-color: #ffcc66">UNDO</button>
-            <button id="skip" onclick="skip()" class="rating-button" style="background-color: #ffcc66">SKIP</button>
+            <button id="defer" onclick="defer()" class="rating-button" style="background-color: #ffcc66">DEFER</button>
             <br><br><br><br><br>
             <button id="logout" onclick="logout()" class="menu-button">Logout</button>
         </div>
-        <div id="snackbar">Temporary message (to be replaced)...</div>
+        <div id="snackbar"></div>
     </body>
 </html>
