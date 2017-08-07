@@ -48,9 +48,7 @@ function obtainInfo($ID) {
     else {
        echo mysqli_error($connection);
     }
-        
 
-    //echo $matchInfo['question'];
     $json = array();
     $json['question'] = $matchInfo['question'];
     $json['answer'] = ucwords($matchInfo['object']);

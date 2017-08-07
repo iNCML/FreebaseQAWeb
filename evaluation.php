@@ -16,24 +16,24 @@
             </div>
         </div>
 
-        <div id='qa'>
+        <div id="qa">
             <table class="qa-table" align="center">
                 <tr><th class="qa-th">Question</th>
                     <th class="qa-th">Answer</th></tr>
-                <tr><td id='question' class="qa-td"></td>
-                    <td id='answer' class="qa-td"></td></tr>
+                <tr><td id="question" class="qa-td"></td>
+                    <td id="answer" class="qa-td"></td></tr>
             </table>
         </div>
-        <div id='triplet'>
-            <span id='subject' class="triplet-span"></span><span style="font-size: 16pt"> &rarr;</span>
-            <span id='predicate' class="triplet-span" style="font-size: 14pt"></span><span style="font-size: 16pt"> &rarr;</span>
+        <div id="triplet">
+            <span id="subject" class="triplet-span"></span><span style="font-size: 16pt"> &rarr;</span>
+            <span id="predicate" class="triplet-span" style="font-size: 14pt"></span><span style="font-size: 16pt"> &rarr;</span>
             <!--<span id='m-predicate' class="triplet-span">government.governmental_jurisdiction.governing_officials</span><span style="font-size: 20pt"> &rarr;</span>-->
-            <span id='object' class="triplet-span"></span>
+            <span id="object" class="triplet-span"></span>
 	    <br>
-	    <p id='m-predicate'></p>
+	    <p id="m-predicate"></p>
         </div>
 
-        <div id='ratings'>
+        <div id="ratings">
             <b>In term of answering the question, how relevant is this triplet/quadruplet? </b><a href="javascript:copyToClipboard()">(COPY TO CLIPBOARD)</a>
             <br><br>
             <button id="0" onclick="submit(0)" class="rating-button" style="background-color: rgba(102, 204, 255, 0.4)"><b>Not Relevant</b></button>
@@ -41,8 +41,9 @@
             <button id="2" onclick="submit(2)" class="rating-button" style="background-color: rgba(102, 204, 255, 1)"><b>Completely Relevant</b></button>
             <br><br>
             <button id="undo" onclick="undo()" class="rating-button" style="background-color: #ffcc66">UNDO</button>
-            <button id="defer" onclick="defer()" class="rating-button" style="background-color: #ffcc66">DEFER</button>
+            <button id="defer" onclick="" class="rating-button" style="background-color: #ffcc66">DEFER</button>
             <br><br><br><br><br>
+	    <span id="username"></span><br><span id="progress"></span><br>
             <button id="logout" onclick="logout()" class="menu-button">Logout</button>
         </div>
         <div id="snackbar"></div>

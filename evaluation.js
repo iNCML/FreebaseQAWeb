@@ -60,6 +60,7 @@ function newPair(onSubmit)
             }
         }
     };
+    getUserInfo();
 }
 
 function undo()
@@ -83,6 +84,7 @@ function undo()
 			    if (xhr.status == 200) {
 				var responseT = JSON.parse(xhr.responseText);
 				updateFields(responseT);
+				getUserInfo();
 				prevMatchID = null;
 				showSnackBar("The previous rating was deleted from the database.");
 			    }
@@ -123,8 +125,8 @@ function defer()
 			if (xhr.status == 200) {
 			    var responseT = JSON.parse(xhr.responseText);
 			    updateFields(responseT);
-			    prevMatchID = null;
-			    showSnackBar("The previous rating was deleted from the database.");
+			    getUserInfo();
+			    showSnackBar("The match has been deferred.");
 			}
 			else {
 			    showSnackBar("There was a problem with the request");
@@ -202,6 +204,27 @@ function showSnackBar(text)
     x.className = "show";
     // after 3 seconds, remove the show class from DIV
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
+function getUserInfo()
+{
+    var xhr = openAjax();
+    xhr.open("POST", "GetUserInfo.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.send();
+    xhr.onreadystatechange = function()
+    {
+        if (xhr.readyState == 4) {
+            if (xhr.status == 200) {
+		var responseT = JSON.parse(xhr.responseText);
+		document.getElementById("username").innerHTML = responseT.username;
+		document.getElementById("progress").innerHTML = "PROGRESS: " + responseT.count + "/20000";
+            }
+            else {
+                showSnackBar("There was a problem with the request.");
+            }
+        }
+    };
 }
 
 window.addEventListener('resize', function()
