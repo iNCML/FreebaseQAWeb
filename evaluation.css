@@ -105,67 +105,6 @@ body {
     font-size: 16px;
 }
 
-
-
-/*#art1 {
-    width: 45%;
-    position: absolute;
-    left: 2%;
-    word-wrap: break-word;
-    padding-right: 1%;
-    padding-left: 1%;
-    border-style: groove;
-    background-color: #ffffff;
-    border-radius: 1%;
-}
-
-#art2 {
-    position: absolute;
-    left: 51%;
-    width: 45%;
-    word-wrap: break-word;
-    padding-left: 1%;
-    padding-right: 1%;
-    border-style: groove;
-    background-color: #ffffff;
-    border-radius: 1%;
-}
-
-#newArt1 {
-    float: left;
-    width: 98%;
-    padding: 1%
-
-}
-
-#newArt2 {
-    float: left;
-    width: 98%;
-    padding: 1%;
-}
-
-.arttext {
-    white-space: pre-line;
-}
-
-.likeArt {
-    text-align: center;
-}
-
-#complete1, #complete2 {
-    display: none;
-}
-
-#more1, #more2 {
-    background: lightblue;
-    color: navy;
-    font-size: 13px;
-    cursor: pointer;
-}
-.title {
-    font-weight: bold;
-}*/
-
 #snackbar {
     visibility: hidden; /* hidden by default. Visible on click */
     min-width: 400px; /* set a default minimum width */

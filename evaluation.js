@@ -1,5 +1,6 @@
 var matchID;
 var prevMatchID;
+var completed = false;
 
 function openAjax()
 {
@@ -13,37 +14,8 @@ function openAjax()
     return xhr;
 }
 
-function submit(rating)
-{   
-    var ratingarray = [matchID, rating];
-    var ratinginfo = "ratinginfo=" + JSON.stringify(ratingarray);
-    var xhr = openAjax();
-    xhr.open("POST", "SubmitRating.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(ratinginfo);
-    xhr.onreadystatechange = function()
-    {
-        if (xhr.readyState == 4) {
-            if (xhr.status == 200) { 
-                newPair(true);
-            }
-            else {
-                showSnackBar("There was a problem with the request.");
-            }
-        }
-    };
-}
-
-function newPair(onSubmit)
+function newMatch()
 {
-    if (!onSubmit) {
-        showSnackBar("Generating new match...");
-    }
-    else {
-        //showSnackBar("Rating has been posted " + numLeft + " left. Generating New Pair.");
-        showSnackBar("Submitted. Generating new match...");
-    }
-
     var xhr = openAjax();
     xhr.open("POST", "GetMatch.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -53,7 +25,13 @@ function newPair(onSubmit)
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
 		var responseT = JSON.parse(xhr.responseText);
-		updateFields(responseT);
+		if (responseT.question == "COMPLETE") {
+		    completed = true;
+		    showSnackBar("You have completed all of your matches!");
+		}
+		else {
+		    updateFields(responseT);
+		}
             }
             else {
                 showSnackBar("There was a problem with the request.");
@@ -63,49 +41,81 @@ function newPair(onSubmit)
     getUserInfo();
 }
 
-function undo()
+function submit(rating)
 {
-    if (prevMatchID != null) {
-	var previnfo = "previnfo=" + prevMatchID;
+    if (completed == false) {
+	var ratingarray = [matchID, rating];
+	var ratinginfo = "ratinginfo=" + JSON.stringify(ratingarray);
 	var xhr = openAjax();
-	xhr.open("POST", "Undo.php", true);
+	xhr.open("POST", "SubmitRating.php", true);
 	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-	xhr.send(previnfo);
+	xhr.send(ratinginfo);
 	xhr.onreadystatechange = function()
 	{
             if (xhr.readyState == 4) {
-		if (xhr.status == 200) {
-		    xhr.open("POST", "GetMatch.php", true);
-		    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		    xhr.send();
-		    xhr.onreadystatechange = function()
-		    {
-			if (xhr.readyState == 4) {
-			    if (xhr.status == 200) {
-				var responseT = JSON.parse(xhr.responseText);
-				updateFields(responseT);
-				getUserInfo();
-				prevMatchID = null;
-				showSnackBar("The previous rating was deleted from the database.");
-			    }
-			    else {
-				showSnackBar("There was a problem with the request");
-			    }
-			}
+		if (xhr.status == 200) { 
+		    var responseT = xhr.responseText;
+		    if (responseT != "Success.") {
+			showSnackBar(responseT);
+		    }
+		    else {
+			showSnackBar("Submitted. Generating new match...");
+			newMatch();
 		    }
 		}
 		else {
-                    showSnackBar("There was a problem with the request");
+                    showSnackBar("There was a problem with the request.");
 		}
             }
 	};
     }
-    else {
-	showSnackBar("You cannot undo again.");
+}
+
+function undo()
+{
+    if (completed == false) {
+	if (prevMatchID != null) {
+	    var previnfo = "previnfo=" + prevMatchID;
+	    var xhr = openAjax();
+	    xhr.open("POST", "Undo.php", true);
+	    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	    xhr.send(previnfo);
+	    xhr.onreadystatechange = function()
+	    {
+		if (xhr.readyState == 4) {
+		    if (xhr.status == 200) {
+			xhr.open("POST", "GetMatch.php", true);
+			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+			xhr.send();
+			xhr.onreadystatechange = function()
+			{
+			    if (xhr.readyState == 4) {
+				if (xhr.status == 200) {
+				    var responseT = JSON.parse(xhr.responseText);
+				    updateFields(responseT);
+				    getUserInfo();
+				    prevMatchID = null;
+				    showSnackBar("The previous rating has been deleted.");
+				}
+				else {
+				    showSnackBar("There was a problem with the request.");
+				}
+			    }
+			}
+		    }
+		    else {
+			showSnackBar("There was a problem with the request.");
+		    }
+		}
+	    };
+	}
+	else {
+	    showSnackBar("You cannot undo again.");
+	}
     }
 }
 
-function defer()
+/*function defer()
 {
     var matchinfo = "matchinfo=" + matchID;
     var xhr = openAjax();
@@ -129,17 +139,17 @@ function defer()
 			    showSnackBar("The match has been deferred.");
 			}
 			else {
-			    showSnackBar("There was a problem with the request");
+			    showSnackBar("There was a problem with the request.");
 			}
 		    }
 		}
 	    }
 	    else {
-                showSnackBar("There was a problem with the request");
+                showSnackBar("There was a problem with the request.");
 	    }
         }
     };
-}
+}*/
 
 function logout()
 {
@@ -151,7 +161,7 @@ function logout()
     {
         if (xhr.readyState == 4) {
             if (xhr.status == 200) {
-                window.location.replace("index.php");
+		window.location.replace("index.php");
             }
             else {
                 alert("There was a problem with the request.");
@@ -180,32 +190,6 @@ BFL2054_QUERY.cgi?Search_Input=" + responseT.objectID + "&Input_Type=ANY&Input_L
     matchID = responseT.matchID;
 }
 
-function copyToClipboard()
-{
-    var matchString = document.getElementById('subject').innerText + " | " + document.getElementById('predicate').innerText + " | " + document.getElementById('object').innerText + " | " + document.getElementById('question').innerText + " | " + matchID;
-    
-    // creates a temporary textarea to copy from
-    var textArea = document.createElement("textarea");
-    textArea.value = matchString;
-    document.body.appendChild(textArea);
-    textArea.select();
-
-    document.execCommand('copy');
-    document.body.removeChild(textArea);
-    
-    showSnackBar("Copied to clipboard.");
-}
-
-function showSnackBar(text)
-{
-    var x = document.getElementById("snackbar");
-    x.innerHTML = text;
-    // add the "show" class to DIV
-    x.className = "show";
-    // after 3 seconds, remove the show class from DIV
-    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-}
-
 function getUserInfo()
 {
     var xhr = openAjax();
@@ -227,6 +211,30 @@ function getUserInfo()
     };
 }
 
+function copyToClipboard()
+{
+    var matchString = document.getElementById('subject').innerText + " | " + document.getElementById('predicate').innerText + " | " + document.getElementById('object').innerText + " | " + document.getElementById('question').innerText + " | " + matchID;
+    
+    // creates a temporary textarea to copy from
+    var textArea = document.createElement("textarea");
+    textArea.value = matchString;
+    document.body.appendChild(textArea);
+    textArea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textArea);
+    showSnackBar("Copied to clipboard.");
+}
+
+function showSnackBar(text)
+{
+    var x = document.getElementById("snackbar");
+    x.innerHTML = text;
+    // add the "show" class to DIV
+    x.className = "show";
+    // after 3 seconds, remove the show class from DIV
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+
 window.addEventListener('resize', function()
 {
     "use strict";
@@ -234,5 +242,6 @@ window.addEventListener('resize', function()
 
 window.onload = function()
 {
-    newPair(false);
+    showSnackBar("Generating match...");
+    newMatch();
 }

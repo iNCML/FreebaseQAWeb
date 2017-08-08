@@ -11,7 +11,7 @@
         <div class="navbar navbar-default navbar-fixed-top">
             <div class="container">
                 <div class="navbar-header page-scroll">
-                    <img src="logo.jpg" class="img-responsive" alt="Lassonde Logo"><p class="navbar-text">Evaluating Matched QA Pairs and Freebase Triplets/Quadruplets</p>
+                    <img src="logo.jpg" class="img-responsive" alt="Lassonde Logo"><p class="navbar-text">Evaluating Matched QA Pairs and Freebase Triples</p>
                 </div>
             </div>
         </div>
@@ -37,12 +37,12 @@
             <b>In term of answering the question, how relevant is this triplet/quadruplet? </b><a href="javascript:copyToClipboard()">(COPY TO CLIPBOARD)</a>
             <br><br>
             <button id="0" onclick="submit(0)" class="rating-button" style="background-color: rgba(102, 204, 255, 0.4)"><b>Not Relevant</b></button>
-            <button id="1" onclick="submit(1)" class="rating-button" style="background-color: rgba(102, 204, 255, 0.7)"><b>Somewhat Relevant</b></button>
+            <button id="1" onclick="submit(1)" class="rating-button" style="background-color: rgba(102, 204, 255, 0.7)"><b>Partially Relevant</b></button>
             <button id="2" onclick="submit(2)" class="rating-button" style="background-color: rgba(102, 204, 255, 1)"><b>Completely Relevant</b></button>
             <br><br>
             <button id="undo" onclick="undo()" class="rating-button" style="background-color: #ffcc66">UNDO</button>
-            <button id="defer" onclick="" class="rating-button" style="background-color: #ffcc66">DEFER</button>
-            <br><br><br><br><br>
+            <button id="defer" onclick="submit(3)" class="rating-button" style="background-color: #ffcc66">DEFER</button>
+            <br><br><br><br>
 	    <span id="username"></span><br><span id="progress"></span><br>
             <button id="logout" onclick="logout()" class="menu-button">Logout</button>
         </div>
