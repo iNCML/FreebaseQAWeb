@@ -25,8 +25,14 @@ if ($rating == 0 || $rating == 1 || $rating == 2 || $rating == 3) {
    if (mysqli_query($conn, $query)) {  
       // if the rating is a deferral rating, it also gets saved to the FreebaseQA_Deferred table
       if ($rating == 3) {
-      	 $query = "INSERT INTO `FreebaseQA_Deferred` (`matchID`, `username`, `time`) VALUES ($matchID, '$username', $time);";
-	 mysqli_query($conn, $query);
+      	 // only add the match if it hasn't already been deferred by the user
+	 $query = "SELECT * FROM `FreebaseQA_Deferred` WHERE `username` = '$username' AND `matchID` = $matchID;";
+	 $result = mysqli_query($conn, $query);
+     	 $nDefers = mysqli_num_rows($result);
+	 if ($nDefers == 0) {
+	    $query = "INSERT INTO `FreebaseQA_Deferred` (`matchID`, `username`, `time`) VALUES ($matchID, '$username', $time);";
+	    mysqli_query($conn, $query);
+	 }
       }
       
       // update user count and currentID
