@@ -27,7 +27,6 @@
         <div id="triplet">
             <span id="subject" class="triplet-span"></span><span style="font-size: 16pt"> &rarr;</span>
             <span id="predicate" class="triplet-span" style="font-size: 14pt"></span><span style="font-size: 16pt"> &rarr;</span>
-            <!--<span id='m-predicate' class="triplet-span">government.governmental_jurisdiction.governing_officials</span><span style="font-size: 20pt"> &rarr;</span>-->
             <span id="object" class="triplet-span"></span>
 	    <br>
 	    <p id="m-predicate"></p>

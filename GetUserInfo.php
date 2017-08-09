@@ -2,7 +2,6 @@
 session_start();
 
 require_once('ConnectDB.php');
-//$conn = returnConn();
 
 $username = $_SESSION["person"];
 
@@ -11,10 +10,12 @@ $userinfo['username'] = $username;
 
 $query = "SELECT * FROM `FreebaseQA_Users` WHERE `username` = '$username';";
 if ($result = mysqli_query($conn, $query)){
-   $userinfo['count'] = mysqli_fetch_assoc($result)['count'];
+   $info = mysqli_fetch_assoc($result);
+   $userinfo['count'] = $info['count'];
+   $userinfo['total'] = $info['total'];   
 }
 else {
-     echo $query;
+     echo "Failed to get user information.";
 }
 echo json_encode($userinfo);
 ?>

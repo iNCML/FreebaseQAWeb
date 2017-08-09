@@ -1,8 +1,8 @@
 <?php
-// start session to get sessional variables
 session_start();
+
 require_once('ConnectDB.php');
-// parse JSON array
+
 $logininfo = $_POST['logininfo'];
 $logininfo = json_decode($logininfo);
 $username = $logininfo[0];

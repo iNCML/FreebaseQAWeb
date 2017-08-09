@@ -1,13 +1,6 @@
 <?php
 require_once("ConnectDB.php");
 
-$matchesPerUser = 20000;
-
-// get server-side key
-//$ini_array = parse_ini_file("config.ini");
-//$serverKey = $ini_array['k'];
-
-// parse JSON array
 $logininfo = $_POST['logininfo'];
 $logininfo = json_decode($logininfo);
 $email = $logininfo[0];
@@ -46,13 +39,14 @@ if ($nUsers >= 1) {
 
 // save password as hash
 $hash = password_hash($password, PASSWORD_DEFAULT);
-// generate random minID for user based on total number of matches
+
+// generate random minID for user as default, based on total number of matches
 $query = "SELECT * FROM `TEMP_Matches`;";
 $result = mysqli_query($conn, $query);
 $nMatches = mysqli_num_rows($result);
 $minID = rand(0, $nMatches);
 
-$query = "INSERT INTO `FreebaseQA_Users` (`username`, `password`, `email`, `minID`, `currentID`, `count`) VALUES ('$username', '$hash', '$email', $minID, $minID, 0);";
+$query = "INSERT INTO `FreebaseQA_Users` (`username`, `password`, `email`, `minID`, `currentID`, `count`, `total`) VALUES ('$username', '$hash', '$email', $minID, $minID, 0, 20000);";
 mysqli_query($conn, $query);
 
 echo "Your account has been sucessfully created!";

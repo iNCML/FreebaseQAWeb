@@ -115,42 +115,6 @@ function undo()
     }
 }
 
-/*function defer()
-{
-    var matchinfo = "matchinfo=" + matchID;
-    var xhr = openAjax();
-    xhr.open("POST", "Defer.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.send(matchinfo);
-    xhr.onreadystatechange = function()
-    {
-        if (xhr.readyState == 4) {
-	    if (xhr.status == 200) {
-		xhr.open("POST", "GetMatch.php", true);
-		xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-		xhr.send();
-		xhr.onreadystatechange = function()
-		{
-		    if (xhr.readyState == 4) {
-			if (xhr.status == 200) {
-			    var responseT = JSON.parse(xhr.responseText);
-			    updateFields(responseT);
-			    getUserInfo();
-			    showSnackBar("The match has been deferred.");
-			}
-			else {
-			    showSnackBar("There was a problem with the request.");
-			}
-		    }
-		}
-	    }
-	    else {
-                showSnackBar("There was a problem with the request.");
-	    }
-        }
-    };
-}*/
-
 function logout()
 {
     var xhr = openAjax();
@@ -202,7 +166,7 @@ function getUserInfo()
             if (xhr.status == 200) {
 		var responseT = JSON.parse(xhr.responseText);
 		document.getElementById("username").innerHTML = responseT.username;
-		document.getElementById("progress").innerHTML = "PROGRESS: " + responseT.count + "/20000";
+		document.getElementById("progress").innerHTML = "PROGRESS: " + responseT.count + "/" + responseT.total;
             }
             else {
                 showSnackBar("There was a problem with the request.");

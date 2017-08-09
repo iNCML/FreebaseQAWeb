@@ -2,7 +2,7 @@
 session_start();
 
 require_once('ConnectDB.php');
-// parse JSON array
+
 $ratinginfo = $_POST['ratinginfo'];
 $ratinginfo = json_decode($ratinginfo);
 $matchID = $ratinginfo[0];
@@ -23,6 +23,12 @@ if ($rating == 0 || $rating == 1 || $rating == 2 || $rating == 3) {
    // submit the rating
    $query = "INSERT INTO `FreebaseQA_Evaluations` (`matchID`, `rating`, `username`, `time`) VALUES ($matchID, $rating, '$username', $time);";
    if (mysqli_query($conn, $query)) {  
+      // if the rating is a deferral rating, it also gets saved to the FreebaseQA_Deferred table
+      if ($rating == 3) {
+      	 $query = "INSERT INTO `FreebaseQA_Deferred` (`matchID`, `username`, `time`) VALUES ($matchID, '$username', $time);";
+	 mysqli_query($conn, $query);
+      }
+      
       // update user count and currentID
       $query = "SELECT * FROM `FreebaseQA_Users` WHERE `username` = '$username';";
       $result = mysqli_query($conn, $query);
