@@ -21,7 +21,7 @@ if ($count >= $total) {
 }
 else {
      // if the current matchID goes past the last match in the table, start from the beginning again
-     $query = "SELECT * FROM `TEMP_Matches`;";
+     $query = "SELECT * FROM `FreebaseQA_Matches`;";
      $result = mysqli_query($conn, $query);
      $nMatches = mysqli_num_rows($result);
      if ($currentID > $nMatches) {
@@ -44,11 +44,14 @@ else {
 }
 
 function obtainInfo($ID, $conn) {
-    $query = "SELECT * FROM `TEMP_Matches` WHERE `matchID` = $ID;";
+    $query = "SELECT * FROM `FreebaseQA_Matches` WHERE `matchID` = $ID;";
     if ($result = mysqli_query($conn, $query)) {
        $matchInfo = mysqli_fetch_assoc($result);
-       $matchInfo['answer'] = ucwords($matchInfo['object']);
-       echo json_encode($matchInfo);
+       foreach ($matchInfo as $key => $value) {
+          $info[$key] = utf8_encode($value);
+       }
+       $info['answer'] = ucwords($info['object']);
+       echo json_encode($info);
     }   
     else {
        echo mysqli_error($conn);

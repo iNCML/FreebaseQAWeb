@@ -1,5 +1,6 @@
 var matchID;
 var prevMatchID;
+var isWaiting = false;
 var completed = false;
 
 function openAjax()
@@ -31,6 +32,7 @@ function newMatch()
 		}
 		else {
 		    updateFields(responseT);
+		    isWaiting = false;
 		}
             }
             else {
@@ -43,7 +45,8 @@ function newMatch()
 
 function submit(rating)
 {
-    if (completed == false) {
+    if (completed == false && isWaiting == false) {
+	isWaiting = true;
 	var ratingarray = [matchID, rating];
 	var ratinginfo = "ratinginfo=" + JSON.stringify(ratingarray);
 	var xhr = openAjax();
@@ -73,8 +76,9 @@ function submit(rating)
 
 function undo()
 {
-    if (completed == false) {
+    if (completed == false && isWaiting == false) {
 	if (prevMatchID != null) {
+	    isWaiting = true;
 	    var previnfo = "previnfo=" + prevMatchID;
 	    var xhr = openAjax();
 	    xhr.open("POST", "Undo.php", true);
@@ -94,6 +98,7 @@ function undo()
 				    var responseT = JSON.parse(xhr.responseText);
 				    updateFields(responseT);
 				    getUserInfo();
+				    isWaiting = false;
 				    prevMatchID = null;
 				    showSnackBar("The previous rating has been deleted.");
 				}

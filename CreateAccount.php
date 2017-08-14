@@ -41,7 +41,7 @@ if ($nUsers >= 1) {
 $hash = password_hash($password, PASSWORD_DEFAULT);
 
 // generate random minID for user as default, based on total number of matches
-$query = "SELECT * FROM `TEMP_Matches`;";
+$query = "SELECT * FROM `FreebaseQA_Matches`;";
 $result = mysqli_query($conn, $query);
 $nMatches = mysqli_num_rows($result);
 $minID = rand(0, $nMatches);
