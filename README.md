@@ -10,7 +10,7 @@ The website is primarily written in PHP that simplifies access to MySQL database
 NOTE: The repository does not include the ConnectDB.php file that creates the connection to the MySQL database.
 
 ## Interface
-<img src="https://www.dropbox.com/s/hur2rncdikirsuk/FreebaseQAWeb%20Interface.png?raw=1">
+![](FreebaseQAWeb%20Interface.png)
 
 ## Tutorial
 For more information on the website's controls and the rating system, take a look at [this tutorial](https://paper.dropbox.com/doc/Evaluating-Matched-QA-Pairs-and-Freebase-Triples-Instructions-GOj0DNA6bI3Vzf4ikMVQf).
